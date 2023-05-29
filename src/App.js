@@ -1,25 +1,23 @@
-import logo from './logo.svg';
-import './App.css';
+import { Navigate, useRoutes } from "react-router-dom";
+import './assets/scss/styles.scss';
+import Home from "./views/Home";
+import { City } from "./views/City";
 
-function App() {
-  return (
-    <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.js</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
+const App = () => {
+  const routing = useRoutes([
+    {
+      path: "/",
+      element: <Navigate to="/home" />,
+    },
+    { path: '/home', element: <Home /> },
+    { path: '/country', element: <City /> },
+  ]);
+
+  return (<main>
+    <div className="wrapper p-2" >
+      {routing}
     </div>
-  );
-}
+  </main>);
+};
 
 export default App;
